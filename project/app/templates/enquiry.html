@@ -1,0 +1,40 @@
+{% extends "layout.html" %} {% block css %}<link
+  rel="stylesheet"
+  href="/static/css/inquiry.css"
+/>{% endblock %} {% block content %}
+<div class="wrapper">
+
+  <div class="flex-container">
+    <div class="moji">
+      <h1>お問い合わせ</h1>
+      <h2>
+        商品についてのお問い合わせ、
+        <br />
+        大口でのご購入等、お気軽にご連絡ください。
+      </h2>
+    </div>
+    <form method="POST">
+      <p>名前:</p>
+      <input type="text" name="name" class="name" placeholder="例) お名前" />
+      <p>電話番号:</p>
+      <input
+        type="tell"
+        name="tell"
+        class="tell"
+        placeholder="例) 012-3456-7890"
+      />
+      <p>メールアドレス:</p>
+      <input
+        type="email"
+        name="email"
+        class="email"
+        placeholder="例) abc@example.com"
+      />
+      <p>内容:</p>
+      <input type="textarea" name="text" class="textarea" />
+      <input type="submit" />
+    </form>
+  </div>
+</div>
+
+{% endblock %}

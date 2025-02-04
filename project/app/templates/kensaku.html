@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検索結果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset-min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="item">
+    <div class="search flex-box">
+      <h2>
+        {% if query and category %}
+            "{{ query }}" の "{{ category }}" カテゴリの検索結果
+        {% elif query %}
+            "{{ query }}" の検索結果
+        {% elif category %}
+            "{{ category }}" カテゴリの検索結果
+        {% else %}
+            検索結果
+        {% endif %}
+    </h2>
+        <p>{{ products|length }}件</p>
+    </div>
+    <div class="sort flex-box">
+        <p>並べ替え:</p>
+        <form name="formlink">
+            <select name="selectlink" class="selectlink" onchange="if(this.value){location.href=this.value;}">
+                <option value="">おすすめ</option>
+                <option value="https://bake-the-online.com/collections/press-butter-sand-standard?sort_by=manual">人気</option>
+                <option value="">価格の高い順</option>
+                <option value="">価格の安い順</option>
+            </select>
+        </form>
+    </div>
+    <div class="border"></div>
+    <div class="content">
+        {% for product in products %}
+        <a href="#" class="item-box {% if loop.index > 4 %}hidden{% endif %}">
+            <div class="image-box">
+                <img src="{{ url_for('static', filename='img/product/' + product.id|string + '.jpg') }}" alt="{{ product.name }}">
+            </div>
+            <div class="text-box">
+                <p class="name">{{ product.name }}</p>
+                <p class="price">¥{{ product.sale_price }} <span class="tax">税込</span></p>
+            </div>
+            <div class="review flex-box">
+                <div class="star">
+                    <p>☆☆☆☆☆</p>
+                </div>
+                <p class="howmanyreviews">100件</p> <!-- ここにレビュー件数を動的に入れたい場合はモデルに追加 -->
+            </div>
+            <div class="cart flex-box">
+                <p>🛒 カートに追加</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% if products|length > 4 %}
+    <div class="morebtn">
+        <button id="moreRead" class="more-read">もっとみる</button>
+    </div>
+    {% endif %}
+    <div style="margin-bottom: 200px;"></div>
+</body>
+<script>
+    document.getElementById('moreRead')?.addEventListener('click', function () {
+        const hiddenItems = document.querySelectorAll('.item-box.hidden');
+        const showCount = 4; 
+        for (let i = 0; i < showCount && i < hiddenItems.length; i++) {
+            hiddenItems[i].classList.remove('hidden');
+        }
+        if (document.querySelectorAll('.item-box.hidden').length === 0) {
+            this.disabled = true;
+            this.classList.add('hidden');
+        }
+    });
+</script>
+</html>

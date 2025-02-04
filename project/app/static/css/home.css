@@ -1,0 +1,24 @@
+.main-visual {
+  width: 100%;
+  margin-bottom: 40px;}
+
+.main-visual img {width: 100%;}
+
+/* jQuery スライド */
+.main-visual .slideshow {
+  margin: 0 0 10px 0;
+	position:relative;
+	width:100%;
+	height:625px;
+	overflow:hidden;}
+
+.main-visual .slideshow img {
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:8;
+  width: 100%;}
+
+.main-visual .slideshow img.active {z-index:10; }
+
+.main-visual .slideshow img.last-active {z-index:9; }

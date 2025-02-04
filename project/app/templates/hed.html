@@ -1,0 +1,49 @@
+{% block hed %}
+<header>
+  <div class="header-wrapper">
+    <div class="header-img">
+      <a href="/">
+        <img src="{{ url_for('static', filename = 'img/logo_1.png')}}" alt="" />
+        <h1>SUSTELLA</h1>
+      </a>
+    </div>
+    <div class="header-list">
+      <div class="header-content">
+        <form action="/search" class="search-form-3" method="post">
+          <label>
+            <input type="text" placeholder="キーワードを入力" name="query" />
+          </label>
+          <select name="category">
+            <option value="">すべてのカテゴリ</option>
+            <option value="フルーツ">フルーツ</option>
+            <option value="category2">カテゴリ2</option>
+            <!-- 必要に応じてカテゴリを追加 -->
+          </select>
+
+          <button type="submit" aria-label="検索"></button>
+        </form>
+      </div>
+      <div class="header-content">
+        <span
+          ><a href="{{url_for('main.products')}}"><p>what is</p></a></span
+        >
+      </div>
+      {% if current_user.is_authenticated %}
+      <div class="header-content">
+        <a href="{{ url_for('main.profile') }}">プロフィール</a>
+      </div>
+      <div class="header-content">
+        <a href="{{ url_for('main.logout') }}">ログアウト</a>
+      </div>
+      {% else %}
+      <div class="header-content">
+        <a href="{{ url_for('main.login') }}">ログイン</a>
+      </div>
+      <div class="header-content">
+        <a href="{{ url_for('main.register') }}">新規登録</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</header>
+{% endblock %}

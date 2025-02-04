@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>アドミンダッシュボード</title>
+    <style>
+      th {
+        width: 180px;
+        text-align: left;
+      }
+      form {
+        display: inline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>登録ユーザー情報</h1>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>削除</th>
+        <th>Password</th>
+      </tr>
+      {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          {% if(user.email != "1@1") %}
+          <form
+            action="{{ url_for('main.delete_user', user_id=user.id) }}"
+            method="POST"
+          >
+            <button type="submit">削除</button>
+          </form>
+          {% endif %}
+        </td>
+        <td>{{ user.password }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <h1>商品種類管理</h1>
+    <h2>商品追加</h2>
+    <form action="{{ url_for('main.add_product') }}" method="POST">
+      <label for="product_name">商品名:</label>
+      <input type="text" name="product_name" required />
+      <label for="new_product_name">価格:</label>
+      <input type="text" name="product_price" />
+      <button type="submit">追加</button>
+    </form>
+    <table>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>価格</th>
+
+      {% for product in product %}
+      <tr>
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.sale_price }}</td>
+        <td>
+          <form
+            action="{{ url_for('main.update_product', product_id=product.id) }}"
+            method="POST"
+          >
+            <label for="new_product_name">商品名:</label>
+            <input type="text" name="new_product_name" />
+            <label for="new_product_name">価格:</label>
+            <input type="text" name="new_product_price" />
+            <button type="submit">更新</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <h1>在庫管理</h1>
+    <h2>在庫追加</h2>
+    <form action="{{ url_for('main.add_inventory') }}" method="POST">
+      <label for="product_id">商品ID:</label>
+      <input type="number" name="product_id" required />
+      <label for="quantity">数量:</label>
+      <input type="number" name="quantity" required />
+      <button type="submit">追加</button>
+    </form>
+
+    <table>
+      <tr>
+        <th>在庫ID</th>
+        <th>商品名</th>
+        <th>在庫数</th>
+        <th>賞味期限</th>
+        <th>編集</th>
+      </tr>
+      {% for inventory in inventories %}
+      <tr>
+        <td>{{ inventory.id }}</td>
+        <td>{{ inventory.product.name }}</td>
+        <td>{{ inventory.quantity }}</td>
+
+        <td>
+          <form
+            action="{{ url_for('main.update_inventory', inventory_id=inventory.id) }}"
+            method="POST"
+          >
+            <input
+              type="number"
+              name="quantity"
+              value="{{ inventory.quantity }}"
+              required
+            />
+            <button type="submit">更新</button>
+          </form>
+          <form
+            action="{{ url_for('main.delete_inventory', inventory_id=inventory.id) }}"
+            method="POST"
+          >
+            <button type="submit">削除</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <h1>販売履歴</h1>
+    <table>
+      <tr>
+        <th>販売ID</th>
+        <th>商品ID</th>
+        <th>販売日</th>
+        <th>販売数量</th>
+        <th>販売価格</th>
+      </tr>
+      {% for sale in sales %}
+      <tr>
+        <td>{{ sale.id }}</td>
+        <td>{{ sale.product_id }}</td>
+        <td>{{ sale.sale_date }}</td>
+        <td>{{ sale.quantity }}</td>
+        <td>{{ sale.price }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

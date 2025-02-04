@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block css %}<link rel="stylesheet" href="/static/css/login.css">{% endblock %}
+
+<title>{% block title %}My Site{% endblock %}</title>
+
+{% block content %}
+<div class="container">
+  <form method="post">
+    <h1 class="fsize">ログイン</h1>
+    <div class="content">
+      <div class="input_box">
+        <div class="input">
+          <p>メールアドレス</p>
+          <input type="email" placeholder="email" name="email">
+        </div>
+        <div class="input">
+          <p>パスワード</p>
+          <input type="password" placeholder="Password" name="password">            
+        </div>
+        <div class="login">
+          <input type="submit" value = "ログイン">
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="paassword">
+    <a href="resetpass">パスワードを忘れた方はこちら　></a>  
+  </div>
+</div>
+<div class="register_line">
+<p>初めてご利用の方はこちら</p>
+</div>
+<div class="register">
+<a href="register">新規会員登録</a>
+</div>
+      
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+ 
+{% block title %}購入手続き{% endblock %}
+ 
+{% block content %}
+  {% if products %}
+  <form action="{{ url_for('main.kounyu') }}" method="POST">
+    <table>
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>価格</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+        <tr>
+          <td>{{ product.name }}</td>
+          <td>¥{{ product.price }}</td>
+          <td>
+            <input type="number" name="quantity_{{ loop.index }}" value="{{ product.quantity }}" min="1">
+          </td>
+          <td>¥{{ product.total }}</td>
+          <input type="hidden" name="product_id_{{ loop.index }}" value="{{ product.id }}">
+          <input type="hidden" name="price_{{ loop.index }}" value="{{ product.price }}">
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p><strong>合計金額:</strong> ¥{{ total_price }}</p>
+ 
+    <button type="submit" class="btn btn-primary">購入手続き</button>
+  </form>
+  {% else %}
+  <p>カートに商品がありません。</p>
+  {% endif %}
+  <a href="/" class="btn btn-secondary">戻る</a>
+{% endblock %}
+ 

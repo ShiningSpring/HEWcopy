@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block css %}<link rel="stylesheet" href="/static/css/login.css">{% endblock %}
+
+{% block title %}パスワードリセット{% endblock %}
+{% block content %}
+<div class="container">
+  <form method="post">
+    <h1 class="fsize">パスワード変更</h1>
+    <div class="content">
+      <div class="input_box">
+        <div class="input">
+          <p>メールまたは電話番号</p>
+          <input type="email" placeholder="メールアドレスまたは電話番号" name="email">
+        </div>
+        <div class="login">
+          <input type="submit" value = "パスワードをリセットする">
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="paassword">
+    <a href="login">ログイン　></a>  
+  </div>
+  <div class="paassword">
+    <a href="register">新規会員登録　></a>  
+  </div>
+</div>
+      
+{% endblock %}

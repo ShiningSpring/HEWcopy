@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/reset-min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    {% block css %}{% endblock %} {% block script %}{% endblock %}
+    <title>{% block title %}My Site{% endblock %}</title>
+  </head>
+  {% include "hed.html" %}
+  <body>
+    {% block content %}{% endblock %}
+  </body>
+  {% include "foot.html" %}
+</html>

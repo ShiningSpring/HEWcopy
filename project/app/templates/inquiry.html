@@ -1,0 +1,33 @@
+{% extends "layout.html" %} {% block css %}<link rel="stylesheet" href="/static/css/inquiry.css" />{% endblock %} {% block content %}
+<div class="wrapper">
+  <div class="navi">
+    <ul class="navi_">
+      <li>
+        <a href="#faq">
+          <span>よくあるご質問（FAQ）</span>
+        </a>
+      </li>
+      <li>
+        <a href="#mado">
+          <span>お問い合わせ窓口</span>
+        </a>
+      </li>
+    </ul>
+    <div>
+    <section class="faq-section" id="faq">
+      <h1>よくある質問 (FAQ)</h1>
+      <ul>
+        {% for question in faqs %}
+        <li>
+          <a href="/faq/{{ loop.index }}"> <strong>Q: {{ question }}</strong><br /> </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    <section class="faq-section" id="mado">
+      <h1>test1</h1>
+      <h2>test2</h2>
+    </section>
+  </div>
+</div>
+{% endblock %}

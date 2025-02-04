@@ -1,0 +1,414 @@
+@media screen and (max-width:374px){
+  
+}
+
+html{
+  height: 100%;
+}
+
+body{
+  height: 100%;
+  display: grid;
+  align-content: space-evenly;
+}
+
+body div.container{
+  border-radius: 20px;
+  padding: 20px 0;
+  width: 400px;
+  margin: 0  auto;
+  margin-bottom: 20px;
+  border-radius: 61px;
+  background: #ffffff;
+  box-shadow:  5px 5px 25px #cfcfcf,
+            -5px -5px 25px #ffffff;
+}
+
+h1.fsize{
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.input_box { 
+  width: 370px;
+  margin: 0 auto;
+}
+
+.input input{
+  border:none;
+  padding: 10px;
+  line-height: 1;
+  width: 100%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border-radius: 39px;
+  background: #ffffff;
+  box-shadow: inset 2px 2px 10px #878787,
+            inset -5px -5px 10px #ffffff;
+}
+
+.input select{
+  padding: 10px;
+  line-height: 1;
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.input p{
+  text-align: left;
+  font-weight: bold;
+}
+
+.input_post_code p{
+  text-align: left;
+  font-weight: bold;
+}
+.input_post_code input{
+  padding: 10px;
+  line-height: 1;
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.input_buil p{
+  text-align: left;
+  font-weight: bold;
+}
+
+.input .input_buil {
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 1;
+  display: flex;
+}
+
+.input .input_buil input:nth-child(1){
+  padding: 10px;
+  width: 80%;
+}
+.input .input_buil input:nth-child(2){
+  padding: 10px;
+  width: 20%;
+  margin-left: 10px;
+}
+
+
+.login input{
+  display       : inline-block;
+  border-radius : 15px;          /* 角丸       */
+  font-size     : 15px;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 5px 5px;   /* 余白       */
+  background    : rgb(118, 196, 0);     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 30px;         /* 1行の高さ  */
+  opacity       : 1;           /* 透明度     */
+  transition    : 0.3s;         /* なめらか変化 */
+  width: 373px;
+  border: solid 0px greenyellow;
+  margin: 15px 0px 30px 0;
+  border-radius: 48px;
+  background: greenyellow;
+  box-shadow:  5px 5px 10px #6f966d,
+             -5px -5px 10px #ffffff;
+}
+.login input:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  opacity       : 0.6;         /* カーソル時透明度 */
+}
+
+.paassword {
+  display: flex;
+  justify-content: right;
+}
+
+.paassword a{
+  font-size: 12px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #0073cc;
+}
+
+.paassword a:hover{
+  color: rgb(138, 180, 248);
+  text-decoration:underline;
+}
+
+.register_line {
+	display: flex;
+	align-items: center;
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border:none;
+}
+
+.register_line p{
+  margin: 0 1em;
+  font-size: 12px;
+  color: #767676;
+}
+
+.register_line:before,
+.register_line:after {
+  content: "";
+  flex-grow: 1;
+  height: 1px; /* 線の太さ */
+  background: #767676; /* 線の色 */
+  margin:0 0em; /* 文字と線の余白 */
+}
+
+.register {
+  margin: 0 auto;
+  width: 400px;
+  border:none
+}
+
+.register a{
+  box-sizing:border-box;
+  display       : inline-block;
+  border-radius : 15px;          /* 角丸       */
+  font-size     : 15px;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 5px 5px;   /* 余白       */
+  background    : white;     /* 背景色     */
+  color         : black;     /* 文字色     */
+  line-height   : 30px;         /* 1行の高さ  */
+  opacity       : 1;           /* 透明度     */
+  transition    : .3s;         /* なめらか変化 */
+  text-decoration: none;
+  border: solid 1px black;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  width: 100%;
+  box-sizing:border-box;
+  /* text-align: center; */
+
+  border-radius: 61px;
+  background: #ffffff;
+  box-shadow:  5px 5px 25px #cfcfcf,
+               -5px -5px 25px #ffffff;
+
+}
+.register a:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  background: #e7e9ec;
+  /* opacity       : 0.8;         カーソル時透明度 */
+}
+
+
+h1.fsize{
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.register_line p{
+  margin: 0 1em;
+  font-size: 12px;
+  color: #767676;
+}
+
+.register_line:before,
+.register_line:after {
+  content: "";
+  flex-grow: 1;
+  height: 1px; /* 線の太さ */
+  background: #767676; /* 線の色 */
+  margin:0 0em; /* 文字と線の余白 */
+}
+
+.register {
+  margin: 0 auto;
+  width: 400px;
+}
+
+.register a{
+  box-sizing:border-box;
+  display       : inline-block;
+  border-radius : 15px;          /* 角丸       */
+  font-size     : 15px;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 5px 5px;   /* 余白       */
+  background    : white;     /* 背景色     */
+  color         : black;     /* 文字色     */
+  line-height   : 30px;         /* 1行の高さ  */
+  opacity       : 1;           /* 透明度     */
+  transition    : .3s;         /* なめらか変化 */
+  text-decoration: none;
+  border: solid 1px black;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  width: 100%;
+  box-sizing:border-box;
+  /* text-align: center; */
+}
+.register a:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  background: #e7e9ec;
+  /* opacity       : 0.8;         カーソル時透明度 */
+}
+
+
+@media screen and (max-width:424px){
+  html{
+    height: 100%;
+  }
+  
+  body {
+    display: flex;
+    height: 100%;
+    flex-flow: column;
+  }
+  
+  header {
+    text-align: center;
+  }
+  
+  header img{
+    width: 150px;
+    margin: 10px 0;
+  }
+  
+  body div.container{
+    /* border: 1px rgb(255, 0, 0) solid; */
+    border-radius: 20px;
+    padding: 20px 10px;
+    width: 300px;
+    margin: 0  auto;
+    margin-bottom: 20px;
+  }
+
+  h1.fsize{
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .input_box { 
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+
+
+  .input input{
+    padding: 10px;
+    line-height: 1;
+    width: 93%;
+    margin-bottom: 20px;
+  }
+  
+  .input p{
+    font-weight: bold;
+  }
+  
+  .login input{
+    display       : inline-block;
+    border-radius : 15px;          /* 角丸       */
+    font-size     : 15px;        /* 文字サイズ */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 5px 5px;   /* 余白       */
+    background    : greenyellow;     /* 背景色     */
+    color         : #ffffff;     /* 文字色     */
+    line-height   : 30px;         /* 1行の高さ  */
+    opacity       : 1;           /* 透明度     */
+    transition    : .3s;         /* なめらか変化 */
+    width: 100%;
+    border: solid 0px greenyellow;
+    margin-bottom: 20px;
+  }
+  .login input:hover {
+    box-shadow    : none;        /* カーソル時の影消去 */
+    opacity       : 0.6;         /* カーソル時透明度 */
+  }
+  
+  .paassword {
+    display: flex;
+    justify-content: right;
+  }
+  
+  .paassword a{
+    margin-right: 20px;
+    text-decoration: none;
+    color: #0073cc;
+  }
+  
+  .paassword a:hover{
+    color: rgb(138, 180, 248);
+    text-decoration:underline;
+  }
+
+  .register_line {
+    display: flex;
+    align-items: center;
+    width: 320px;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .register_line p{
+    margin: 0 1em;
+    font-size: 12px;
+    color: #767676;
+  }
+  
+  .register_line:before,
+  .register_line:after {
+    content: "";
+    flex-grow: 1;
+    height: 1px; /* 線の太さ */
+    background: #767676; /* 線の色 */
+    margin:0 0em; /* 文字と線の余白 */
+  }
+  
+  .register {
+    margin: 0 auto;
+    width: 320px;
+  }
+  
+  .register a{
+    display       : inline-block;
+    border-radius : 15px;          /* 角丸       */
+    font-size     : 15px;        /* 文字サイズ */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 5px 5px;   /* 余白       */
+    background    : white;     /* 背景色     */
+    color         : black;     /* 文字色     */
+    line-height   : 30px;         /* 1行の高さ  */
+    opacity       : 1;           /* 透明度     */
+    transition    : .3s;         /* なめらか変化 */
+    text-decoration: none;
+    border: solid 1px black;
+    margin-bottom: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    /* text-align: center; */
+  }
+  .register a:hover {
+    box-shadow    : none;        /* カーソル時の影消去 */
+    background: #e7e9ec;
+    /* opacity       : 0.8;         カーソル時透明度 */
+  }
+  
+  footer{
+    height: auto;
+    border: 1px black solid;
+    background-color: #383d43;
+    flex-grow: 1;
+  }
+  footer p{
+    color: white;
+  }
+}
