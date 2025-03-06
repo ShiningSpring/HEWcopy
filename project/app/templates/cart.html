@@ -6,11 +6,9 @@ content %}
     <div class="item-box">
       {% if products %}
 				{% for product in products %}
-					<div class="item">
+					<div class="cart-item flex-box">
 						<div class="image-box">
-							{% for image in product.images %}
 							<img src="{{ product.images[0] }}" alt="{{ product.name }}" />
-							{% endfor %}
 						</div>
 						<div class="text-box">
 							<div class="text flex-box">
@@ -19,21 +17,14 @@ content %}
 							</div>
 							<div class="flex-box">
 								<div class="count flex-box">
-									<form action="{{ url_for('main.update_quantity') }}" method="post">
+									<form action="{{ url_for('main.update_quantity') }}" method="post" class="flex-box">
 										<input type="hidden" name="id" value="{{ product.id }}" />
-										<button type="submit" name="action" value="decrease" class="btn">
-											-
-										</button>
+										<button type="submit" name="action" value="decrease" class="btn">-</button>
 										<p class="num">{{ product.quantity }}</p>
-										<button type="submit" name="action" value="increase" class="btn">
-											+
-										</button>
+										<button type="submit" name="action" value="increase" class="btn">+</button>
 									</form>
-									<form
-										action="{{ url_for('main.remove_from_cart', product_id=product.id) }}"
-										method="post"
-									>
-										<button type="submit" class="btn">削除</button>
+									<form action="{{ url_for('main.remove_from_cart', product_id=product.id) }}" method="post">
+										<button type="submit" class="btn deletebtn">削除</button>
 									</form>
 								</div>
 							</div>
@@ -43,7 +34,6 @@ content %}
 			{% else %}
 				<p>カートに商品がありません。</p>
 			{% endif %}
-      </div>
     </div>
     {% if products %}
     <div class="total">
@@ -58,8 +48,6 @@ content %}
     {% else %}
     <div style="height: 100px;"></div>
     {% endif %}
-  </div>
-    <a href="/" class="btn btn-secondary">戻る</a>
   </div>
 </div>
 {% endblock %}

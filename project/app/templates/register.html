@@ -29,7 +29,7 @@
             <div class="input_post_code">
               <span class="p-country-name" style="display:none;">Japan</span>
               <p>郵便番号</p>
-              <input type="text" name="post" class="p-postal-code" size="3" maxlength="3" placeholder="例：000">-<input type="text" class="p-postal-code" size="4" maxlength="4" placeholder="例：0000">
+              <input type="text" name="post" class="p-postal-code" size="7" maxlength="7" placeholder="例：0000000">
             </div>
             <div class="input">
               <p>都道府県</p>
@@ -86,15 +86,15 @@
             </div>
             <div class="input">
               <p>市町村区</p>
-              <input type="text" class="p-locality" placeholder="例：〇〇市"/>
+              <input type="text" name='siku' class="p-locality" placeholder="例：〇〇市"/>
             </div>
             <div class="input">
               <p>町域</p>
-              <input type="text" class="p-street-address" placeholder="例：〇〇町"/>
+              <input type="text" name="tyo" class="p-street-address" placeholder="例：〇〇町"/>
             </div>
             <div class="input">
               <p>丁目・番地・号（数字は半角数字）</p>
-              <input type="text" class="p-extended-address" placeholder="例：1-2-3"/>
+              <input type="text" name="ban" class="p-extended-address" placeholder="例：1-2-3"/>
             </div>
             <div class="input">
               <p>建物名／会社名・部屋番号</p>

@@ -15,9 +15,10 @@
           </label>
           <select name="category">
             <option value="">すべてのカテゴリ</option>
-            <option value="フルーツ">フルーツ</option>
-            <option value="category2">カテゴリ2</option>
-            <!-- 必要に応じてカテゴリを追加 -->
+            <option value="デザート">デザート</option>
+            <option value="お菓子">お菓子</option>
+            <option value="加工品">加工品</option>
+            <option value="飲み物">飲み物</option>
           </select>
 
           <button type="submit" aria-label="検索"></button>
@@ -31,6 +32,9 @@
       {% if current_user.is_authenticated %}
       <div class="header-content">
         <a href="{{ url_for('main.profile') }}">プロフィール</a>
+      </div>
+      <div class="header-content">
+        <a href="{{ url_for('main.cart') }}">カート</a>
       </div>
       <div class="header-content">
         <a href="{{ url_for('main.logout') }}">ログアウト</a>

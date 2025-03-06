@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掲示板</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 10px;
+        }
+        #messages {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow-y: auto;
+            height: calc(100vh - 150px);
+        }
+        .message {
+            padding: 8px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .message p {
+            margin: 4px 0;
+        }
+        form {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ccc;
+            display: flex;
+            padding: 10px;
+        }
+        textarea {
+            flex: 1;
+            resize: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px;
+            margin-right: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>掲示板</h1>
+    <div id="messages">
+        {% for post in posts %}
+            <div class="message">
+                <p><strong>{{ post.device_id }}</strong> | {{ post.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                <p>{{ post.content }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form id="postForm">
+        <textarea id="content" name="content" placeholder="ここに書き込んでください" required></textarea>
+        <button type="submit">投稿</button>
+    </form>
+
+    <script>
+        // サーバーに接続
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        // 新しいメッセージを受け取ったとき
+        socket.on('new_message', function(data) {
+            const messagesDiv = document.getElementById('messages');
+            const newMessage = document.createElement('div');
+            newMessage.classList.add('message');
+            newMessage.innerHTML = `
+                <p><strong>${data.device_id}</strong> | ${data.timestamp}</p>
+                <p>${data.content}</p>
+            `;
+            messagesDiv.insertBefore(newMessage, messagesDiv.firstChild);
+        });
+
+        // 投稿フォームを処理
+        const postForm = document.getElementById('postForm');
+        const contentInput = document.getElementById('content');
+
+        postForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const content = contentInput.value.trim();
+            if (content) {
+                fetch('/post', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `content=${encodeURIComponent(content)}`
+                }).then(() => {
+                    contentInput.value = ''
+                });
+            }
+        });
+
+        // エンターキーで送信
+        contentInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                postForm.dispatchEvent(new Event('submit'));
+            }
+        });
+    </script>
+</body>
+</html>

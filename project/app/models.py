@@ -28,7 +28,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     category = db.Column(db.String(50), nullable=True)
-    defect_reason = db.Column(db.String(100))
+    defect_reason = db.Column(db.String(1000))
     purchase_price = db.Column(db.Float, nullable=True)
     sale_price = db.Column(db.Float, nullable=True)
     status = db.Column(db.Enum("available", "not_available",
@@ -98,9 +98,9 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
     name = db.Column(db.String(50))
-    star = db.Column(db.Integer)
+    star = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String(100))
-    describe = db.Column(db.Text)
+    describe = db.Column(db.Text, nullable=False)
     review_date = db.Column(db.DateTime, default=datetime.now())
 
 class Fcat(db.Model):

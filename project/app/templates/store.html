@@ -26,165 +26,53 @@
         <div class="text-box">
             <h3>{{ product.name }}</h3>
             <div class="review flex-box">
-                <div class="star">
-                    <p>☆☆☆☆☆</p>
+                <div class="review-star">
+                    <p>{{review_avg_star}} {{"★"*int_review_avg_star}}{{"☆"*(5-int_review_avg_star)}}</p>
                 </div>
-                <p class="howmanyreviews">{{ product.review_count }}件</p>
+                <p class="howmanyreviews">{{sum_review}}件</p>
             </div>
             <h4>\{{ product.sale_price }} <span class="tax">税込</span></h4>
             <form action="{{ url_for('main.add_to_cart', product_id=product.id) }}" method="POST">
-                <input type="number" name="quantity" value="1" min="1" required>
                 <button type="submit" class="btn">🛒 カートに追加</button>
             </form>
             <div class="explanation">
               <h5>商品説明</h5>
-              <p>タマゴの入手方法
-                  ポケモンのタマゴは、特定のポケモンを育て屋や預かり屋に預けることで入手できます。この施設は各地方に設けられており、条件に合うペアが一緒に預けられると一定の確率でタマゴが見つかることがあります。ペアとして適合する条件は、同じ「タマゴグループ」に属していることや、性別（通常はオスとメスの組み合わせ）です。タマゴが生まれると、プレイヤーが歩数を重ねることで孵化し、そこから新しいポケモンが誕生します。
-                  
-                  特徴
-                  種類と遺伝
-                  生まれたポケモンは通常、母親または種オス（片方がメタモンの場合も）に応じた種類になります。加えて、技や特性、性格が親から遺伝する仕組みもあります。これにより、戦闘で有利なポケモンを計画的に育成することが可能です。
-                  
-                  孵化の仕組み
-                  タマゴを孵化させるには一定の歩数が必要です。この歩数は種族ごとに異なり、特定のアイテムや特性（「ほのおのからだ」や「マグマのよろい」など）を活用すれば効率が上がります。
-                  
-                  ユニークな遺伝技
-                  親ポケモンが覚えている特定の技はタマゴから孵った子ポケモンに受け継ぐことがあり、これを「タマゴ技」と呼びます。これにより、通常では覚えられない技を持ったポケモンを作り出すことが可能です。
-                  
-                  不可タマゴグループ
-                  一部のポケモン（伝説、幻、準伝説など）はタマゴを作れない「タマゴ未発見グループ」に属します。また、メタモンは例外的に他の多くのポケモンと組み合わせ可能で、繁殖の幅を広げる特別な存在です。
-                  
-                  プレイヤーにとっての意義
-                  タマゴの仕組みは、プレイヤーがポケモンの個体値、性格、特性を調整し、理想の育成計画を立てるための重要な要素です。また、新たなポケモンを探求したりコレクションを充実させる楽しみを提供します。タマゴ孵化をテーマにしたチャレンジや国際孵化法（色違いポケモンを狙う方法）など、コミュニティでも人気のある要素となっています。
-                  
-                  ポケモンのタマゴは、そのシンプルな見た目以上に、戦略的な育成と冒険の楽しさを深める重要な要素と言えるでしょう。</p>
+              <p>{{ product.defect_reason }}</p>
           </div>
       </div>
   </div>
-  <div class="recommend flex-box">
-    <a href="" class="item-box">
-      <div class="image-box">
-          <img src="./images/egg.jpg">
-      </div>
-      <div class="text-box">
-          <p class="name">たまご</p>
-          <p class="price">\10,000 <span class="tax">税込</span></p>
-      </div>
-      <div class="review flex-box">
-          <div class="star">
-              <p>☆☆☆☆☆</p>
-          </div>
-          <p class="howmanyreviews">100件</p>
-      </div>
-      <div class="cart flex-box">
-          <p>詳しく見る</p>
-      </div>
-    </a>
-    <a href="" class="item-box">
-      <div class="image-box">
-          <img src="./images/egg.jpg">
-      </div>
-      <div class="text-box">
-          <p class="name">たまご</p>
-          <p class="price">\10,000 <span class="tax">税込</span></p>
-      </div>
-      <div class="review flex-box">
-          <div class="star">
-              <p>☆☆☆☆☆</p>
-          </div>
-          <p class="howmanyreviews">100件</p>
-      </div>
-      <div class="cart flex-box">
-          <p>詳しく見る</p>
-      </div>
-    </a>
-    <a href="" class="item-box">
-      <div class="image-box">
-          <img src="./images/egg.jpg">
-      </div>
-      <div class="text-box">
-          <p class="name">たまご</p>
-          <p class="price">\10,000 <span class="tax">税込</span></p>
-      </div>
-      <div class="review flex-box">
-          <div class="star">
-              <p>☆☆☆☆☆</p>
-          </div>
-          <p class="howmanyreviews">100件</p>
-      </div>
-      <div class="cart flex-box">
-          <p>詳しく見る</p>
-      </div>
-    </a>
-    <a href="" class="item-box">
-      <div class="image-box">
-          <img src="./images/egg.jpg">
-      </div>
-      <div class="text-box">
-          <p class="name">たまご</p>
-          <p class="price">\10,000 <span class="tax">税込</span></p>
-      </div>
-      <div class="review flex-box">
-          <div class="star">
-              <p>☆☆☆☆☆</p>
-          </div>
-          <p class="howmanyreviews">100件</p>
-      </div>
-      <div class="cart flex-box">
-          <p>詳しく見る</p>
-      </div>
-    </a>
-  </div>
-  <div class="review-box">
-    <h4>この商品のレビュー</h4>
-    <h5>4.8 ★★★★★(100件中)</h5>
-    <div class="flex-box">
-      <div class="star-box">
-        <p>星5 ★★★★★ - 95%</p>
-        <p>星4 ★★★★☆ - 0%</p>
-        <p>星3 ★★★☆☆ - 0%</p>
-        <p>星2 ★★☆☆☆ - 0%</p>
-        <p>星1 ★☆☆☆☆ - 5%</p>
-      </div>
-      <div class="summary">
-        <!-- chatgptかなんか使ってレビューの要約できたら面白そうと思ったけど無理そうだったら消していいです下-->
-        <h5>お客様のご意見</h5>
-        <p>ポケモンのたまごは、孵化するまでのワクワク感や可愛らしいポケモンの登場が大好評です。デザイン性も高く、プレゼントや自分用として満足できる品質です。孵化の楽しさと手軽さが魅力で、リピート購入を考える声が多く、子どもから大人まで楽しめる商品との評価が目立ちます。</p>
-      </div>
+  
+  <div>
+    <div>
+      <form action="{{ url_for('main.add_review', product_id=product.id) }}" method="post">
+        <p class="bold">レビューを書く</p>
+        <div class="stars" id="starRating">
+          <span class="star" data-value="1" role="button">★</span>
+          <span class="star" data-value="2" role="button">★</span>
+          <span class="star" data-value="3" role="button">★</span>
+          <span class="star" data-value="4" role="button">★</span>
+          <span class="star" data-value="5" role="button">★</span>
+        </div>
+        <label>タイトル:<input type="text" name="title" placeholder="タイトルを入力" class="review-title"></label><br>
+        <label>本文:<input type="text" name="describe" placeholder="本文を入力" class="review-body"></label><br>
+        <div id="error" class="error" style="display: none;">すべて入力してください。</div>
+        <input type="hidden" name="rate" id="ratel">
+        <input type="submit" value="送信">
+      </form>
     </div>
-    <div class="comment">
-      <div class="review-box-box">
-        <div class="flex-box">
-          <img src="./images/icon.png" alt="">
-          <p>サトシ</p>
-          <p>-</p>
-          <p>★★★★★</p>
-        </div>
-          <p class="bold">ポケモンのたまごを初めて購入しましたが、大満足です！</p>
-          <p>孵化の過程がとても楽しく、わくわくしました。どんなポケモンが出るのか予想するのも楽しみの一つです。デザインも可愛らしく、インテリアとして飾っても素敵だと思います。実際に孵化したポケモンもとても元気で可愛らしいです。特に子供たちが興奮している姿を見て、購入して良かったと思いました。手軽に新たなポケモンを手に入れる方法としておすすめです。ぜひまたリピートしたいと思っています！</p>
-      </div>
-      <div class="review-box-box">
-        <div class="flex-box">
-          <img src="./images/icon.png" alt="">
-          <p>サトシ2</p>
-          <p>-</p>
-          <p>★★★★★</p>
-        </div>
-          <p class="bold">ポケモンのたまごを友人へのプレゼント用に購入しましたが、大成功でした！</p>
-          <p>孵化するまで何が出るか分からないドキドキ感がプレゼントとして最適で、受け取った友人もとても喜んでいました。たまごのデザインが凝っていて、高品質な点にも満足。思ったより早く孵化して、可愛らしいポケモンが登場したと報告がありました。自分用にも欲しくなったので、次は自分用に購入を検討中です。ゲーム以外にもこういった楽しみ方があるのが魅力的です！</p>
-      </div>
-      <div class="review-box-box">
-        <div class="flex-box">
-          <img src="./images/icon.png" alt="">
-          <p>サトシ3</p>
-          <p>-</p>
-          <p>★★★★★</p>
-        </div>
-          <p class="bold">ポケモンのたまごを購入してみましたが、大満足です！</p>
-          <p>孵化までの待ち時間もワクワクして楽しく、孵化した瞬間の感動は想像以上でした。出てきたポケモンはとても愛らしく、一緒に遊ぶ時間が増えました。たまごの外観も凝っていて、開封時の高揚感があります。ただ、孵化までのヒントがもう少し分かりやすければもっと良かったかもしれません。それでも、全体的に素晴らしい体験でした。また購入して別のポケモンを迎えたいと思っています！</p>
-      </div>
+    
+    <div>
+      <h4>この商品のレビュー</h4>
+      <h5>{{review_avg_star}} {{"★"*int_review_avg_star}}{{"☆"*(5-int_review_avg_star)}}({{sum_review}}件中)</h5>
+      {% for review in reviews %}
+      <p>{{review.title}} - 
+        {{"★"*review.star}}{{"☆"*(5-review.star)}}</p>
+      <p>{{review.describe}}</p>
+      <br/>
+      {% endfor %}
     </div>
   </div>
+</div>
 
   <div style="margin-bottom: 200px;"><!-- 実装するときけしてください　footerできるまで下スぺ-ス作りたいだけ --></div>
         </div>
@@ -198,6 +86,7 @@
   const slides = document.querySelectorAll('.slide > div');
   const totalSlides = slides.length;
   const slideWidth = 100 / totalSlides;
+  const star = document.getElementById("ratel");
   slideContainer.style.width = `${totalSlides * 100}%`;
   slides.forEach((slide) => {
     slide.style.width = `${slideWidth}%`;
@@ -250,5 +139,66 @@
     resetAutoPlayInterval()
   }
   updateIndicatorColors();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const reviewForm = document.getElementById("reviewForm");
+    const reviewInput = document.getElementById("review");
+    const reviewsContainer = document.getElementById("reviews");
+    const starRating = document.getElementById("starRating");
+    const errorMessage = document.getElementById("error");
+    const starRatingValue = document.getElementById("starRatingValue")
+    let selectedRating = 0;
+
+    // 星評価の選択機能
+    starRating.addEventListener("click", (e) => {
+        if (e.target.classList.contains("star")) {
+            const stars = starRating.querySelectorAll(".star");
+            selectedRating = parseInt(e.target.getAttribute("data-value"), 10);
+            starRating.value = selectedRating
+          star.value = selectedRating
+          console.log(selectedRating)
+          console.log(star)
+
+            stars.forEach(star => {
+                star.classList.remove("selected");
+                if (parseInt(star.getAttribute("data-value"), 10) <= selectedRating) {
+                    star.classList.add("selected");
+                }
+            });
+        }
+    });
+
+    reviewForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const reviewText = reviewInput.value.trim();
+
+        if (reviewText && selectedRating > 0) {
+            const reviewElement = document.createElement("div");
+            reviewElement.classList.add("review");
+            reviewElement.innerHTML = `<strong>評価: ${selectedRating} / 5</strong><br>${reviewText}`;
+
+            reviewsContainer.appendChild(reviewElement);
+            reviewInput.value = "";
+
+            // Placeholder textの削除
+            const placeholder = reviewsContainer.querySelector("p");
+            if (placeholder) {
+                placeholder.remove();
+            }
+
+            // 星評価のリセット
+            const stars = starRating.querySelectorAll(".star");
+            stars.forEach(star => star.classList.remove("selected"));
+            selectedRating = 0;
+
+            // エラーメッセージの非表示
+            errorMessage.style.display = "none";
+        } else {
+            errorMessage.style.display = "block";
+        }
+    });
+});
+
 </script>
 {% endblock %}

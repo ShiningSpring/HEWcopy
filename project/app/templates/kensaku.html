@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/reset-min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+{% extends "layout.html" %} 
+{% block content %}
 <body class="item">
+    
     <div class="search flex-box">
       <h2>
         {% if query and category %}
@@ -36,9 +39,9 @@
     <div class="border"></div>
     <div class="content">
         {% for product in products %}
-        <a href="#" class="item-box {% if loop.index > 4 %}hidden{% endif %}">
+        <a href="store/{{product.id}}" class="item-box">
             <div class="image-box">
-                <img src="{{ url_for('static', filename='img/product/' + product.id|string + '.jpg') }}" alt="{{ product.name }}">
+                <img src="{{ url_for('static', filename='img/products/' + product.id|string + '/main.jpg') }}" alt="{{ product.name }}">
             </div>
             <div class="text-box">
                 <p class="name">{{ product.name }}</p>
@@ -50,7 +53,7 @@
                 </div>
                 <p class="howmanyreviews">100件</p> <!-- ここにレビュー件数を動的に入れたい場合はモデルに追加 -->
             </div>
-            <div class="cart flex-box">
+            <div class="cartbtn flex-box">
                 <p>🛒 カートに追加</p>
             </div>
         </a>
@@ -77,3 +80,5 @@
     });
 </script>
 </html>
+
+{% endblock %}

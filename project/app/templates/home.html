@@ -2,7 +2,7 @@
   <p><img src="{{ url_for('static', filename = 'img/logo_3.png')}}" alt=""></p>
 </div> -->
 
-<div class="main-visual">
+<!-- <div class="main-visual">
   <div class="slideshow">
     <img
       src="{{ url_for('static', filename = 'img/sakana.jpg')}}"
@@ -18,7 +18,7 @@
       alt="Slideshow Image 3"
     />
   </div>
-</div>
+</div> -->
 
 {% extends "layout.html" %} {% block title %}ホーム{% endblock %}
 <head>
@@ -34,6 +34,11 @@
 {% block content %}
 
 <body>
+
+  <div class="top_video">
+    <video src="../static/video/top_video.mp4" autoplay muted loop></video>
+  </div>
+  
   <main>
     <div class="item-pickup">
       <div class="item-pickup_content">
@@ -104,7 +109,7 @@
         </div>
       </div>
       <div class="others">
-        <a href="">
+        <a href="/search">
           <p>もっと見る</p>
           <div class="arrow">
             <p>»</p>

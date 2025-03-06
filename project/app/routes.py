@@ -58,29 +58,33 @@ def store(id):
     product = Product.query.get_or_404(id)
     image_url = get_product_images(id)
     reviews = Review.query.filter(id == Review.product_id).all()
-    return render_template('store.html', product=product, image_url=image_url, reviews=reviews)
+    review_avg_star = [review.star for review in reviews]
+    review_avg_star = round(sum(review_avg_star)/len(review_avg_star), 1) if (reviews) else 0
+    int_review_avg_star = int(round(review_avg_star, 0))
+    sum_review = len(reviews)
+    return render_template('store.html', product=product, image_url=image_url, reviews=reviews, review_avg_star=review_avg_star, int_review_avg_star=int_review_avg_star, sum_review=sum_review)
 
 
 @bp.route('/store/<int:product_id>/review', methods=['POST'])
 @login_required
 def add_review(product_id):
-    title = request.form.get("title")  # カートに追加する数量を取得
-    describe = request.form.get("describe")
-    star = request.form.get("star")
-    name = session.get('name')
-    product_id_str = str(product_id)  # 商品IDを文字列として統一
+        title = request.form.get("title")
+        describe = request.form.get("describe")
+        star = int(request.form.get("rate"))
+        name = session.get('name')
+        product_id_str = str(product_id)  # 商品IDを文字列として統一
 
-    new_Review = Review(
-        product_id=product_id_str,
-        title=title,
-        star=star,
-        describe=describe,
-        name=name
-    )
-    db.session.add(new_Review)
-    db.session.commit()
+        new_Review = Review(
+            product_id=product_id_str,
+            title=title,
+            star=star,
+            describe=describe,
+            name=name
+        )
+        db.session.add(new_Review)
+        db.session.commit()
 
-    return redirect(url_for('main.store', id=product_id))
+        return redirect(url_for('main.store', id=product_id))
 
 
 @bp.route('/search', methods=['GET', 'POST'])
@@ -163,8 +167,8 @@ def pop_from_cart():
 
 
 @bp.route('/kounyu', methods=['GET', 'POST'])
+@login_required
 def kounyu():
-    # セッションからカートを取得
     cart = session.get('cart', {})
     total_price = sum(float(item['price']) * item['quantity']
                       for item in cart.values())
@@ -360,25 +364,22 @@ def register():
         password = generate_password_hash(
             request.form['password'], method='pbkdf2:sha256')
         phon = request.form['phon']
-        # name = request.form['name'].replace(' ', '').replace('　', '')
-        # post = request.form['post'].replace(' ', '').replace('　', '')
-        # prefecture = request.form['prefecture'].replace(
-        #     ' ', '').replace('　', '')
-        # siku = request.form['siku'].replace(' ', '').replace('　', '')
-        # tyo = request.form['tyo'].replace(' ', '').replace('　', '')
-        # ban = request.form['ban'].replace(' ', '').replace('　', '')
+        post = request.form['post'].replace(' ', '').replace('　', '')
+        prefecture = request.form['prefecture'].replace(' ', '').replace('　', '')
+        siku = request.form['siku'].replace(' ', '').replace('　', '')
+        tyo = request.form['tyo'].replace(' ', '').replace('　', '')
+        ban = request.form['ban'].replace(' ', '').replace('　', '')
         verification_code = generate_verification_code()
 
         session['verification_code'] = verification_code
         session['email'] = email
         session['password'] = password
         session['phon'] = phon
-        # session['name'] = name
-        # session['post'] = post
-        # session['prefecture'] = prefecture
-        # session['siku'] = siku
-        # session['tyo'] = tyo
-        # session['ban'] = ban
+        session['post'] = post
+        session['prefecture'] = prefecture
+        session['siku'] = siku
+        session['tyo'] = tyo
+        session['ban'] = ban
         # 認証コードをメールで送信
         msg = Message('Your Verification Code',
                       sender='hewgroup040@gmail.com', recipients=[email])

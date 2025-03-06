@@ -1,81 +1,52 @@
 {% extends "layout.html" %} {% block title %}ユーザープロファイル{% endblock %}
 {% block content %}
-<body class="profile">
-  <div class="caption">
-    <div class="flex-box">
-      <h3>ユーザー情報</h3>
-      <a href="/profile/edit" class="edit">編集する</a>
-    </div>
-  </div>
-  <div class="content">
-    <div class="flex-box">
-      <p class="flame">お名前</p>
-      <p class="userinfo">{{ user.name }}</p>
-    </div>
-    <div class="flex-box">
-      <p class="flame">メールアドレス</p>
-      <p class="userinfo">{{ user.email }}</p>
-    </div>
-    <div class="flex-box">
-      <p class="flame">電話番号</p>
-      <p class="userinfo">{{ user.phon }}</p>
-    </div>
-    <div class="flex-box">
-      <p class="flame">住所</p>
-      <p class="userinfo">{{ user.post }}</p>
-      <p class="userinfo">
-        {{ user.ken }}{{user.siku}}{{user.tyo}}{{user.ban}}
-      </p>
-    </div>
-    <div class="flex-box">
-      <p class="flame">パスワード</p>
-      <p class="userinfo">**********</p>
-    </div>
-
-    <form
-      action="{{ url_for('main.delete_user', user_id=user.id) }}"
-      method="POST"
-    >
-      <button type="submit">削除</button>
-    </form>
-  </div>
-
-  <div class="caption">
-    <div class="flex-box">
-      <h3>お支払い方法</h3>
-      <a href="/payment/edit" class="edit">編集する</a>
-    </div>
-  </div>
-  <div class="content">
-    {% if payment_methods %}
-    <div class="flex-box">
-      <p class="flame">ご登録のクレジットカード</p>
-      <div>
-        {% for card in payment_methods %}
-        <p class="userinfo">
-          {{ card.brand }} ****{{ card.last4 }} {{ card.expiry }}
-        </p>
-        {% endfor %}
+<body>
+  <div class="profile">
+    <div class="caption">
+      <div class="flex-box">
+        <h3>ユーザー情報</h3>
+        <a href="/profile/edit" class="edit">編集する</a>
       </div>
     </div>
-    {% else %}
-    <p>登録されたお支払い方法はありません。</p>
-    {% endif %}
-  </div>
-
-  <div class="caption">
-    <div class="flex-box">
-      <h3>購入履歴</h3>
-      <a href="/history" class="edit">もっとみる</a>
+    <div class="content">
+      <div class="flex-box">
+        <p class="flame">お名前</p>
+        <p class="userinfo">{{ user.name }}</p>
+      </div>
+      <div class="flex-box">
+        <p class="flame">メールアドレス</p>
+        <p class="userinfo">{{ user.email }}</p>
+      </div>
+      <div class="flex-box">
+        <p class="flame">電話番号</p>
+        <p class="userinfo">{{ user.phone }}</p>
+      </div>
+      <div class="flex-box">
+        <p class="flame">住所</p>
+        <p class="userinfo">{{ user.post }}</p>
+        <p class="userinfo">
+          {{ user.ken }}{{user.siku}}{{user.tyo}}{{user.ban}}
+        </p>
+      </div>
+      <div class="flex-box">
+        <p class="flame">パスワード</p>
+        <p class="userinfo">**********</p>
+      </div>
+  
+      <form
+        action="{{ url_for('main.delete_user', user_id=user.id) }}"
+        method="POST"
+      >
+        <button type="submit">削除</button>
+      </form>
     </div>
-  </div>
-  {% if sales %}
+    {% if sales %}
   <div class="history">
     {% for sale in sales %}
-    <a href="/product/{{ sale.product_id }}">
+    <a href="/store/{{ sale.product_id }}">
       <div class="history-content border">
         <img
-          src="static/img/product/{{ sale.product_id }}.jpg"
+          src="{{ url_for('static', filename='img/products/' + sale.product.id|string + '/main.jpg') }}"
           alt="{{ sale.product.name }}"
         />
         <div class="text-box">
@@ -83,11 +54,40 @@
           <p class="date">{{ sale.sale_date.strftime('%Y/%m/%d') }}</p>
         </div>
       </div>
-    </a>
-    {% endfor %}
+      {% endfor %}
+      {% else %}
+      <p>登録されたお支払い方法はありません。</p>
+      {% endif %}
+    </div>
+  
+    <div class="caption">
+      <div class="flex-box">
+        <h3>購入履歴</h3>
+        <a href="/history" class="edit">もっとみる</a>
+      </div>
+    </div>
+    {% if sales %}
+    <div class="history">
+      {% for sale in sales %}
+      <a href="/product/{{ sale.product_id }}">
+        <div class="history-content border">
+          <img
+            src="static/img/store/{{ sale.product_id }}.jpg"
+            alt="{{ sale.product.name }}"
+          />
+          <div class="text-box">
+            <p class="name">{{ sale.product.name }}</p>
+            <p class="date">{{ sale.sale_date.strftime('%Y/%m/%d') }}</p>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>このユーザーはまだ購入していません。</p>
+    {% endif %}
   </div>
-  {% else %}
-  <p>このユーザーはまだ購入していません。</p>
-  {% endif %}
+  </div>
+  
 </body>
 {% endblock %}
