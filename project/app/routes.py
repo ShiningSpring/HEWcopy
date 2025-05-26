@@ -16,9 +16,9 @@ admin_credentials = {
 
 
 def get_product_images(product_id):
-    # 商品IDに基づいて画像ファイルのリストを動的に生成
+    
     base_path = f"img/products/{product_id}"
-    # 手動でファイル名を指定
+
     image_files = ["1.jpg", "2.jpg", "3.jpg"]
 
     images = [url_for('static', filename=f"{base_path}/{file}") for file in image_files]
@@ -93,7 +93,7 @@ def search_products():
     query = request.form.get('query')  # 検索キーワード
     category = request.form.get('category')  # カテゴリフィルタ
 
-    # クエリを構築
+   
     products = Product.query
 
     if query:  # 商品名で検索
@@ -102,7 +102,7 @@ def search_products():
     if category:  # カテゴリでフィルタリング
         products = products.filter_by(category=category)
 
-    # クエリ実行
+    
     products = products.all()
 
     return render_template('kensaku.html', products=products, query=query, category=category)
@@ -179,7 +179,7 @@ def kounyu():
             'name': item['name'],
             'price': item['price'],
             'quantity': item['quantity'],
-            'total': round(total_price, 2)  # 小数点2位で丸める
+            'total': round(total_price, 2) 
         }
         for item in cart.values()
     ]
@@ -196,7 +196,7 @@ def kounyu():
     </tr>
     """ for item in cart.values()
         )
-
+        #要 切り離し
         email_html = f"""
 <!DOCTYPE html>
 <html lang=\"ja\">
@@ -244,14 +244,14 @@ def kounyu():
 """
 
         # 商品ごとに処理
-        # cat = {"flute":0}
+        
         for product_key, item in cart.items():
-            product_id = int(product_key)  # セッションから取得したproduct_id (キーとして使用)
+            product_id = int(product_key)  # セッションから取得したproduct_id
             quantity = item['quantity']  # カート情報から数量を取得
             price = item['price']  # カート情報から価格を取得
             user = User.query.filter_by(email=email).first()
 
-            # cat[f'{item["category"]}'] += item['quantity']
+       
 
             # Sale レコードを追加
             new_sale = Sale(
@@ -261,12 +261,7 @@ def kounyu():
                 price=float(price)
             )
             db.session.add(new_sale)
-        # コミットして変更を確定
-
-            # add_Fcat = Fcat(
-            #     flute = Fcat.flute+cat['flute']
-            # )
-            # db.session.add(add_Fcat)
+       
         db.session.commit()
 
         # メール送信
@@ -410,7 +405,6 @@ def verify():
             siku = session.get('siku')
             tyo = session.get('tyo')
             ban = session.get('ban')
-            # Userのインスタンスを作成
             user = User(id=id, email=email, password=password, phone=phon,
                         name=name, post=post, ken=ken, siku=siku, tyo=tyo, ban=ban)
             db.session.add(user)

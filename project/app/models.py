@@ -42,7 +42,7 @@ class Inventory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey(
         'products.id'), nullable=False)
-    quantity = db.Column(db.Integer, nullable=True)  # 数量
+    quantity = db.Column(db.Integer, nullable=True)  
 
 # 販売テーブル
 
@@ -91,7 +91,7 @@ class Contact(db.Model):
     email = db.Column(db.String(100))
     text = db.Column(db.Text)
 
-#レビューてーｂ
+#レビューテーブル
 
 class Review(db.Model):
     __tablename__ = 'review'

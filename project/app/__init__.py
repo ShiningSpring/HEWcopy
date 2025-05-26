@@ -49,9 +49,6 @@ def create_app():
 
     return app
 
-# テストデータ挿入の関数
-
-
 def init_db():
     with db.session.begin():
         # Userデータの挿入
@@ -198,5 +195,4 @@ def init_db():
 
 
 
-        # 変更をコミットしてデータを保存
     db.session.commit()
